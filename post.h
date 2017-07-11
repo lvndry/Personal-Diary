@@ -5,7 +5,9 @@ typedef struct
 {
 	user *creator;
 	char *content;
-	time_t date;
+	int day;
+	int month;
+	int year;
 }post;
 
 void clean_stdin(void);

@@ -42,107 +42,26 @@ Jazzy Bazz
 
 -- END --
 
-
-Pseudo : lad Date : 7/7/2017 Heure : 15:19
-Post :
-Bonjour
-
--- END --
-
-
-Pseudo : lad Date : 7/7/2017 Heure : 15:19
-Post :
-Bonjour
-
--- END --
-
-
-Pseudo : lad Date : 7/7/2017 Heure : 15:21
-Post :
-Bonjour
-
--- END --
-
-
-Pseudo : lad Date : 7/7/2017 Heure : 18:39
-Post :
-J'ai virer le control + X a la fin
-Du coup les posts seront plus propres
-
--- END --
-
-
-Pseudo : lad Date : 7/7/2017 Heure : 18:41
-Post :
-Flemme
-de 
-faire de nouvelles
-Phrases!
-
--- END --
-
-
-Pseudo : lad Date : 7/7/2017 Heure : 18:48
-Post :
-Just un test pour voir
-RIen de nouveau
-
--- END --
-
-
-Pseudo : lad Date : 10/7/2017 Heure : 10:47
-Post :
-
--- END --
-
-
-Pseudo : lad Date : 10/7/2017 Heure : 10:49
-Post :
-Je test de voir si ca bug
-
--- END --
-
-
-Pseudo : lad Date : 10/7/2017 Heure : 10:56
-Post :
-Je retest
-Again and again
-
--- END -- 
-
-
-Pseudo : lad Date : 10/7/2017 Heure : 11:1
-Post :
-Gonna see if the toupper changement works
-
--- END -- 
-
-
-Pseudo : lad Date : 10/7/2017 Heure : 11:1
-Post :
-Does it work now ?
-
--- END -- 
-
-
-Pseudo : lad Date : 10/7/2017 Heure : 11:2
-Post :
-I typed the wrong key
-
--- END --
-
-Pseudo : lad Date : 10/7/2017 Heure : 11:23
-Post :
-Nouveu test du -- End --
-Je pense ca va etre ok
-
--- END  --
-
-
-
 Pseudo : lad Date : 10/7/2017 Heure : 11:25
 Post :
 L'aquarium de Fixpen SIll
 Du loooourd
 
 -- END --
+Pseudo : lad Date : 11/7/2017 Heure : 14:33
+Post :
+Now we register metadata in the strc
+so that it can be used again
+
+-- END --
+
+
+
+
+Pseudo : lad Date : 11/7/2017 Heure : 14:36
+Post :
+Again and again I made some new improvents 
+Now this is not an int that is registerd a the date but the element of the struct
+
+-- END --
+

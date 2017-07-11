@@ -82,6 +82,7 @@ void createuser(user *newuser){
 		scanf("%s", newuser->pseudo);
 		getchar();
 	}
+	
 	printf("Password : ");
 	scanf("%s", newuser->password);
 	getchar();

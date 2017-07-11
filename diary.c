@@ -15,9 +15,11 @@ user* connexion(user *connecteduser){
 	if(connexion == 1){
 		printf("\n");
 		int login = connectuser(connecteduser);
-		if(login)
+
+		if(login){
 	 		printf(" === Welcome %s ! ===\n\n", connecteduser->pseudo);
-	 	else {
+		} 
+		else {
 	 		printf("Connexion failed\nMaybe you should sign up first\n");
 	 		return NULL;
 	 	}
@@ -34,7 +36,7 @@ int menu(){
 	printf("\t[2] See all my post\n");
 	printf("\t[3] See all posts\n");
 	printf("\t[4] See all ... posts\n");
-	printf("\t[5] Log out\n");
+	printf("\t[5] Log out\n\n");
 	printf("Choice : ");
 	while(scanf("%d", &option) != 1 || option < 1 || option > 5){
 		getchar();

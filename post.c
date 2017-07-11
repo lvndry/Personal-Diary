@@ -17,13 +17,20 @@ void clean_stdin(void)
 void newpost(user *writer){
 	FILE *postfile = fopen("post.txt", "a+");
 	char content[150] = "";
-	char post[500] = "";
+	char conf[500] = "";
 	
+	/*struc*/post writerpost;
+	writerpost.creator = writer;
+
 	time_t mtime;
 	time(&mtime);
 	struct tm *lt = localtime(&mtime);
 
-	fprintf(postfile, "Pseudo : %s Date : %d/%d/%d Heure : %d:%d\n", writer->pseudo, (int)lt->tm_mday, (int)lt->tm_mon+1, (int)lt->tm_year+1900, (int)lt->tm_hour, (int)lt->tm_min);
+	writerpost.day = (int)lt->tm_mday;
+	writerpost.month = (int)lt->tm_mon+1;
+	writerpost.year =  (int)lt->tm_year+1900;
+
+	fprintf(postfile, "Pseudo : %s Date : %d/%d/%d Heure : %d:%d\n", writer->pseudo, writerpost.day, writerpost.month, writerpost.year, (int)lt->tm_hour, (int)lt->tm_min);
 
 	printf("Welcome in your personal editor\nHere you can write anything you want your secret will stay secret\n");
 	printf("You can start writing and type CTRL + X when finished\n");
@@ -32,13 +39,15 @@ void newpost(user *writer){
 
 	while(*content != 24){
 		fgets(content, sizeof(content), stdin);
-		strcat(post, content);
+		strcat(conf, content);
 	}
 
-	post[strlen(post)-2] = '\0';  /*also CTRL + X is not printed in the post*/
+	writerpost.content = conf;
+	
+	conf[strlen(conf)-2] = '\0';  /*also CTRL + X is not printed in the post*/
 	printf("\n\n\n");
-	printf("Your post : \n%s\n", post);
-	fprintf(postfile, "Post :\n%s\n-- END --\n\n\n\n\n", post);
+	printf("Your post : \n%s\n", conf);
+	fprintf(postfile, "Post :\n%s\n-- END --\n\n\n\n\n", writerpost.content);
 	
 	fclose(postfile);
 }
@@ -61,7 +70,6 @@ void seeAllPost(){
 }
 
 void seeUserPost(char *wpseudo){
-	//printf("Pseudo : %s\n", wpseudo);
 	char *pseudo = malloc(20*sizeof(char));
 	char c;
 
@@ -71,7 +79,7 @@ void seeUserPost(char *wpseudo){
 
 	fseek(postfile, 0, SEEK_END);
 	int eof = ftell(postfile);
-	printf("eof : %d\n", eof);
+
 	rewind(postfile);
 
 	while(ftell(postfile) < eof){
