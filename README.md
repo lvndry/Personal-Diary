@@ -1,6 +1,6 @@
 # Personal-Diary
   Your personal Diary : Fell free to confess anything you want
-##Options
+## Options
   - Sigin/Signup 
   - Add a post in my personal diary
   - See all post of my personal diary
