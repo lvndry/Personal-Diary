@@ -11,5 +11,4 @@ typedef struct
 void clean_stdin(void);
 void newpost(user *writer);
 void seeAllPost();
-void seeUserPost(user* writer);
-
+void seeUserPost(char* wpseudo);

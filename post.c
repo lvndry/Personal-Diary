@@ -31,7 +31,7 @@ void newpost(user *writer){
 	clean_stdin();
 
 	while(*content != 24){
-		fgets(content, sizeof content, stdin);
+		fgets(content, sizeof(content), stdin);
 		strcat(post, content);
 	}
 
@@ -60,40 +60,49 @@ void seeAllPost(){
 	getchar();
 }
 
-void seeUserPost(user *writer){
+void seeUserPost(char *wpseudo){
+	//printf("Pseudo : %s\n", wpseudo);
 	char *pseudo = malloc(20*sizeof(char));
 	char c;
 
 	FILE *postfile = fopen("post.txt", "r");
-	int line = 0, fresult = 0;
+	int line = 0, count = 0;
+	int cmp;
 
 	fseek(postfile, 0, SEEK_END);
 	int eof = ftell(postfile);
-	
+	printf("eof : %d\n", eof);
 	rewind(postfile);
 
-	while(ftell(postfile) < eof && fresult == 0){
+	while(ftell(postfile) < eof){
 		do{
 			fscanf(postfile, "%s", pseudo);
-			printf("%s\n", pseudo);
-		}while(strcmp(writer->pseudo, pseudo) != 0 && ftell(postfile) < eof);
+			cmp = strcmp(wpseudo, pseudo);
+		}while(cmp != 0 && ftell(postfile) < eof-10);
 
+		if(cmp == 0)
+			count++;
+		
 		fseek(postfile, -(strlen(pseudo)), SEEK_CUR);
 		fseek(postfile, -9, SEEK_CUR);
 		
 		c = 'c';
 		
-		while(c != 24){
-			c = fgetc(postfile);
-			if(c == 24)
-				continue;
-			printf("%c", c);
+		if(cmp == 0)
+			while(c != 24){
+				c = fgetc(postfile);
+				if(c == 24)
+					continue;
+				printf("%c", c);
 		}
 		
 		fseek(postfile, 13, SEEK_CUR);
 		printf("\n\n\n\n");
 	}
-	
+	if(count == 0)
+		printf("No post founded\n");
+
+	printf("Press enter to continue\n");
 	free(pseudo);
 	fclose(postfile);
 	getchar();
