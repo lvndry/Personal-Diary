@@ -42,6 +42,7 @@ int menu(){
 		getchar();
 		printf("This is not an option\nPlease choose a valid opiton\nChoice : ");
 	}
+	printf("\n");
 	return option;
 }
 

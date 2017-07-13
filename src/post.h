@@ -11,6 +11,11 @@ typedef struct
 }post;
 
 void clean_stdin(void);
+int getNumOfPost(FILE *postfile);
 void newpost(user *writer);
 void seeAllPost();
 void seeUserPost(char* wpseudo);
+int getNumOfPost(FILE *postfile);
+int getDates();
+void readPost(FILE *postfile);
+void dateOrder();

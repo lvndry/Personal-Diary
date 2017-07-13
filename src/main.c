@@ -9,6 +9,8 @@ int main(int argc, char const *argv[])
 	user* writerptr = NULL;
 	char c;
 	
+	dateOrder();
+
 	do{
 		printf("===== Welcome in your personal diary ===== \n");
 		do{

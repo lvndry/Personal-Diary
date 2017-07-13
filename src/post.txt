@@ -1,4 +1,4 @@
-Pseudo : lad Date : 7/7/2017 Heure : 15:10
+Pseudo : lad Date : 9/7/2017 Heure : 15:10
 Post :
 Voila mon 1er ecrit dans mon journal intime
 Je reviendrai mamene
@@ -6,21 +6,15 @@ Je reviendrai mamene
 -- END --
 
 
-Pseudo : lad Date : 7/7/2017 Heure : 15:12
+Pseudo : amlad Date : 17/7/2017 Heure : 15:12
 Post :
 Second post sur mon journal intime
 Je fais quelques corrections mais ca avance bien
 
 -- END --
 
-Pseudo : notlad  Date : 10/7/2017 Heure : 11:25
-Post :
-Le tout dernier post
-Ne devrait pas s'afficher
-
--- END -- 
 
-Pseudo : lad Date : 7/7/2017 Heure : 15:15
+Pseudo : ladou Date : 15/7/2017 Heure : 15:15
 Post :
 Je fais encore un test
 
@@ -42,26 +36,27 @@ Jazzy Bazz
 
 -- END --
 
+
 Pseudo : lad Date : 10/7/2017 Heure : 11:25
 Post :
 L'aquarium de Fixpen SIll
 Du loooourd
 
 -- END --
+
+
 Pseudo : lad Date : 11/7/2017 Heure : 14:33
 Post :
 Now we register metadata in the strc
 so that it can be used again
-
+
 -- END --
-
-
 
 
 Pseudo : lad Date : 11/7/2017 Heure : 14:36
 Post :
 Again and again I made some new improvents 
 Now this is not an int that is registerd a the date but the element of the struct
-
+
 -- END --
 
