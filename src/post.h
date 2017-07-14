@@ -16,7 +16,6 @@ void newpost(user *writer);
 void seeAllPost();
 void seeUserPost(char* wpseudo);
 int getNumOfPost(FILE *postfile);
-int getDates();
 void readPost(FILE *postfile);
 void dateOrder();
 void sort(int n, int m, int array[m][n]);

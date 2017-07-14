@@ -20,16 +20,16 @@ void dateOrder(){
 
 	int numofpost = getNumOfPost(postfile);
 	int dates[numofpost];
-	int day, month, year, hour, minutes, i = 0;
+	int pseudolen = 0, i = 0;
+
 	struct tm ptime;
-	char* elt = malloc(5*sizeof(char));
-	char* dref = "Date";
-	char* href = "Heure";
-	char c = 'c';
 
+	char *elt = malloc(5*sizeof(char));
 	char *pseudo = malloc(20*sizeof(char));
-	int pseudolen = 0;
-
+	char *dref = "Date";
+	char *href = "Heure";
+	char c = 'c';
+	
 	rewind(postfile);
 
 	while(!feof(postfile)){
@@ -37,7 +37,6 @@ void dateOrder(){
 		fscanf(postfile, "%s", elt);
 
 		if(strcmp(elt, dref) == 0){
-
 			fseek(postfile, 3, SEEK_CUR);
 			fscanf(postfile, "%d/%d/%d", (int)&(ptime.tm_mday), (int)&(ptime.tm_mon), (int)&(ptime.tm_year));
 		}
@@ -68,6 +67,12 @@ void dateOrder(){
 
 			fscanf(postfile, "%s", elt);
 			
+			if(strcmp(elt, "Pseudo") == 0){
+				fseek(postfile, 3, SEEK_CUR);
+				fscanf(postfile, "%s", pseudo);
+				pseudolen = strlen(pseudo);
+			}
+
 			if(strcmp(elt, dref) == 0){
 
 				fseek(postfile, 3, SEEK_CUR);
@@ -86,17 +91,14 @@ void dateOrder(){
 			int mkt = mktime(&ptime);
 			
 			if(mkt == dates[i]){
-				fseek(postfile, -42, SEEK_CUR);
+				fseek(postfile, -39, SEEK_CUR);
+				fseek(postfile, -pseudolen, SEEK_CUR);
 				
-				while(c != 24){
-					c = fgetc(postfile);
-		
-					if(c == 24)
-						continue;
-
-					printf("%c", c);
-				}
+				readPost(postfile);
 			}
+
+			if(ftell(postfile)+13 < feof(postfile)) //If it is not the last post
+				fseek(postfile, 13, SEEK_CUR); //I go to next post
 		}
 	}
 	
@@ -116,7 +118,6 @@ int getNumOfPost(FILE *postfile){
 
 	return count;
 }
-
 
 void insert(int member, unsigned int arr[], int size)
 {
@@ -222,7 +223,7 @@ void seeUserPost(char *wpseudo){
 			if(feof(postfile))
 				break;
 
-		readPost(postfile);
+		    readPost(postfile);
 
 			c = 'c'; //Otherwise c will be equal to 24 next loop
 
