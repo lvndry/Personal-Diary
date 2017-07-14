@@ -19,3 +19,5 @@ int getNumOfPost(FILE *postfile);
 int getDates();
 void readPost(FILE *postfile);
 void dateOrder();
+void sort(int n, int m, int array[m][n]);
+void insertsort(unsigned int arr[], int size);

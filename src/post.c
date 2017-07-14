@@ -14,32 +14,93 @@ void clean_stdin(void)
     } while (c != '\n' && c != EOF);
 }
 
-void insert(int member, unsigned int arr[], int size)
-{
-    int i,j;
+void dateOrder(){
 
-    for(i=0;i<size;i++)
-    {
-        if(member< arr[i])
-        {
-            for( j=0;j<size-i;j++)
-            {
-                arr[size-j]=arr[size-j-1];
-            }
-            arr[i]=member;
-            break;
-         }
-    }     
-}
+	FILE *postfile = fopen("post.txt", "r");
 
-void insertsort(unsigned int arr[], int size)
-{
-    int i=1, member;
+	int numofpost = getNumOfPost(postfile);
+	int dates[numofpost];
+	int day, month, year, hour, minutes, i = 0;
+	struct tm ptime;
+	char* elt = malloc(5*sizeof(char));
+	char* dref = "Date";
+	char* href = "Heure";
+	char c = 'c';
 
-    for(i=1; i < size; i++){
-    	member = arr[i];
-    	insert(member,arr,i);
-    }
+	char *pseudo = malloc(20*sizeof(char));
+	int pseudolen = 0;
+
+	rewind(postfile);
+
+	while(!feof(postfile)){
+			
+		fscanf(postfile, "%s", elt);
+
+		if(strcmp(elt, dref) == 0){
+
+			fseek(postfile, 3, SEEK_CUR);
+			fscanf(postfile, "%d/%d/%d", (int)&(ptime.tm_mday), (int)&(ptime.tm_mon), (int)&(ptime.tm_year));
+		}
+
+		if(strcmp(elt, href) == 0){
+			fseek(postfile, 3, SEEK_CUR);
+			fscanf(postfile, "%d:%d", (int)&(ptime.tm_hour), (int)&(ptime.tm_min));
+		}
+
+		ptime.tm_year -= 1900;
+		ptime.tm_mon -= 1;
+		ptime.tm_sec = 0;
+		ptime.tm_isdst = -1;
+		int rep = mktime(&ptime);
+
+		if(rep != -1){
+			dates[i++] = rep;
+		}
+	}
+
+	insertsort(dates, sizeof(dates)/sizeof(dates[0]));
+		
+	for(int i = 0; i < numofpost; i++){
+		c = 'c';
+		rewind(postfile);
+		
+		while(!feof(postfile) && c != 24){
+
+			fscanf(postfile, "%s", elt);
+			
+			if(strcmp(elt, dref) == 0){
+
+				fseek(postfile, 3, SEEK_CUR);
+				fscanf(postfile, "%d/%d/%d", (int)&(ptime.tm_mday), (int)&(ptime.tm_mon), (int)&(ptime.tm_year));
+			}
+
+			if(strcmp(elt, href) == 0){
+				fseek(postfile, 3, SEEK_CUR);
+				fscanf(postfile, "%d:%d", (int)&(ptime.tm_hour), (int)&(ptime.tm_min));
+			}
+
+			ptime.tm_year -= 1900;
+			ptime.tm_mon -= 1;
+			ptime.tm_sec = 0;
+			ptime.tm_isdst = -1;
+			int mkt = mktime(&ptime);
+			
+			if(mkt == dates[i]){
+				fseek(postfile, -42, SEEK_CUR);
+				
+				while(c != 24){
+					c = fgetc(postfile);
+		
+					if(c == 24)
+						continue;
+
+					printf("%c", c);
+				}
+			}
+		}
+	}
+	
+	fclose(postfile);	
 }
 
 int getNumOfPost(FILE *postfile){
@@ -54,6 +115,32 @@ int getNumOfPost(FILE *postfile){
 	}
 
 	return count;
+}
+
+
+void insert(int member, unsigned int arr[], int size)
+{
+    int i,j;
+
+    for(i = 0; i < size; i++){
+    	if(member < arr[i]){
+    		for(j  = 0; j < size-i; j++){
+    			arr[size-j] = arr[size-j-1];
+    		}
+            arr[i] = member;
+            break;
+         }
+    }     
+}
+
+void insertsort(unsigned int arr[], int size)
+{
+    int i=1, member;
+
+    for(i = 1; i < size; i++){
+    	member = arr[i];
+    	insert(member, arr, i);
+    }
 }
 
 void newpost(user *writer){
@@ -111,19 +198,6 @@ void seeAllPost(){
 	getchar();
 }
 
-void readPost(FILE *postfile){
-	char c = 'c';
-
-	while(c != 24){
-		c = 'c';
-		c = fgetc(postfile);
-		
-		if(c == 24)
-			continue;
-		printf("%c", c);
-	}
-}
-
 void seeUserPost(char *wpseudo){
 	FILE *postfile = fopen("post.txt", "r");
 
@@ -171,121 +245,14 @@ void seeUserPost(char *wpseudo){
 	getchar();
 }
 
-/*
-int gateDates(FILE *postfile){
-
-
-		free(elt);
-	
-	else return 0;
-
-	return tabdate;
-}
-*/
-void dateOrder(){
-
-	FILE *postfile = fopen("post.txt", "r");
-	unsigned int numofpost = getNumOfPost(postfile);
-	unsigned int datetab[numofpost];
-	unsigned int tabdate;
-	unsigned int jour, mois, annee, heure, minutes, i = 0;
-	char* elt = malloc(5*sizeof(char));
-	char* dref = "Date";
-	char* href = "Heure";
+void readPost(FILE *postfile){
 	char c = 'c';
 
-	char *pseudo = malloc(20*sizeof(char));
-	int pseudolen = 0;
-
-	rewind(postfile);
-
-	while(!feof(postfile)){
-			
-		fscanf(postfile, "%s", elt);
-
-		if(strcmp(elt, dref) == 0){
-			fseek(postfile, 3, SEEK_CUR);
-			fscanf(postfile, "%u/%u/%u", &jour, &mois, &annee);
-		}
-
-		if(strcmp(elt, href) == 0){
-			fseek(postfile, 3, SEEK_CUR);
-			fscanf(postfile, "%u:%u", &heure, &minutes);
-
-			tabdate = annee;
-			tabdate += mois;
-			tabdate += jour;
-			tabdate += heure;
-			tabdate += minutes;
-			
-			datetab[i++] = tabdate;
-
-		}
-	}
-
-	int tablen =  sizeof(datetab)/sizeof(datetab[0]);
-	
-	insertsort(datetab, tablen);
-	//printf("Tablen : %d\n", tablen);
-	for(int i = 0; i < tablen; i++)
-		printf("%d\n", datetab[i]);
-
-	/*for(int i = 0; i < tablen; i++){
-
-		rewind(postfile);
-		printf("%d\n", datetab[i]);
-
-		while(!feof(postfile)){
-
-			fscanf(postfile, "%s", elt);
-
-			if(strcmp(elt, "Pseudo") == 0){
-				fseek(postfile, 3, SEEK_CUR);
-				fscanf(postfile, "%s", elt);
-	
-				pseudolen = strlen(elt);
-			}
-
-			//fscanf(postfile, "%s", elt);
-
-			if(strcmp(elt, dref) == 0){
-				fseek(postfile, 3, SEEK_CUR);
-				fscanf(postfile, "%u/%u/%u", &jour, &mois, &annee);
-			}
-
-			if(strcmp(elt, href) == 0){
-				fseek(postfile, 3, SEEK_CUR);
-				fscanf(postfile, "%u:%u", &heure, &minutes);
-
-				tabdate = annee;
-				tabdate += mois;
-				tabdate += jour;
-				tabdate += heure;
-				tabdate += minutes;
-			}
-
-			if(tabdate == datetab[i]){
-				printf("tabdate : %d datetab[i] : %d\n", tabdate, datetab[i]);
-				//printf("ftell : %d\n", ftell(postfile));
-				fseek(postfile, -39, SEEK_CUR);
-				fseek(postfile, -pseudolen, SEEK_CUR);
-				//printf("ftell aftfseek : %d\n", ftell(postfile));
-				
-				while(c != 24){
-					c = fgetc(postfile);
+	while(c != 24){
+		c = fgetc(postfile);
 		
-					if(c == 24){
-						printf("CONTINUE BATARD\n");
-						continue;
-					}
-					printf("%c", c);
-				}
-				c = 'c';
-				//readPost(postfile);
-			}
-		}
+		if(c == 24)
+			continue;
+		printf("%c", c);
 	}
-*/
-	free(datetab);
-	fclose(postfile);	
 }
