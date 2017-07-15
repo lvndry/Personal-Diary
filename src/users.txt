@@ -1,4 +1,4 @@
 Pseudo   Password    Foreame	Age
 
-admin root user 30
+admin root user 0
 lad lad Landry 18

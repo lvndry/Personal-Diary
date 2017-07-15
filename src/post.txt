@@ -1,12 +1,4 @@
-Pseudo : lad Date : 9/7/2017 Heure : 15:10
-Post :
-Voila mon 1er ecrit dans mon journal intime
-Je reviendrai mamene
-
--- END --
-
-
-Pseudo : amlad Date : 17/7/2017 Heure : 15:12
+Pseudo : amlad Date : 7/7/2017 Heure : 15:12
 Post :
 Second post sur mon journal intime
 Je fais quelques corrections mais ca avance bien
@@ -14,7 +6,15 @@ Je fais quelques corrections mais ca avance bien
 -- END --
 
 
-Pseudo : ladou Date : 6/7/2017 Heure : 15:15
+Pseudo : lad Date : 7/7/2017 Heure : 15:10
+Post :
+Voila mon 1er ecrit dans mon journal intime
+C'est un bon debut!
+
+-- END --
+
+
+Pseudo : ladou Date : 7/7/2017 Heure : 15:15
 Post :
 Je fais encore un test
 
@@ -31,16 +31,16 @@ On verra bien le resultat
 
 Pseudo : lad Date : 7/7/2017 Heure : 15:19
 Post :
-Je cherche l'adrelaline
-Jazzy Bazz
+Lorem Ipsum je connait pas la suite
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
 
 -- END --
 
 
 Pseudo : lad Date : 10/7/2017 Heure : 11:25
 Post :
-L'aquarium de Fixpen SIll
-Du loooourd
+Je peux vraiment tout dire dans ce journal intime
+Personne lire
 
 -- END --
 

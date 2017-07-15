@@ -1,6 +1,6 @@
 #include "diary.h"
 
-user* connexion(user *connecteduser){
+user* connexion(user *connecteduser){ //Sign in / Sign up, returns a user
 	
 	unsigned short connexion;
 
@@ -29,7 +29,7 @@ user* connexion(user *connecteduser){
 	return connecteduser;
 }
 
-int menu(){
+int menu(){ //User options, returns chosen option
 	int option;
 
 	printf("\t[1] Write in my diary \n");
@@ -39,6 +39,7 @@ int menu(){
 	printf("\t[5] See all ... posts\n");
 	printf("\t[6] Log out\n\n");
 	printf("Choice : ");
+
 	while(scanf("%d", &option) != 1 || option < 1 || option > 6){
 		getchar();
 		printf("This is not an option\nPlease choose a valid opiton\nChoice : ");
@@ -47,7 +48,7 @@ int menu(){
 	return option;
 }
 
-void useraction(user *writer, int option){
+void useraction(user *writer, int option){ //Launch action depending on what the user choose
 	char pseudo[20];
 
 	switch(option){

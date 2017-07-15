@@ -1,7 +1,14 @@
 #include <stdio.h>
 #include <ctype.h>
+#include <unistd.h>
 
 #include "diary.h"
+
+#ifdef _WIN32	//If in windows
+	#define CLEAR system("cls");
+#else 
+	#define CLEAR system("clear");	//If linux/Mac
+#endif
 
 int main(int argc, char const *argv[])
 {
@@ -10,7 +17,10 @@ int main(int argc, char const *argv[])
 	char c;
 	
 	do{
+		CLEAR
+		
 		printf("===== Welcome in your personal diary ===== \n");
+
 		do{
 			writerptr = connexion(&writer);
 			printf("\n\n\n");
