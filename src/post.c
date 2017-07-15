@@ -13,20 +13,36 @@ void clean_stdin(){ //clean the buffer
     } while (c != '\n' && c != EOF);
 }
 
+int check(int i, struct tm *dates, struct tm ptime){
+	if(dates[i].tm_year == ptime.tm_year && dates[i].tm_mon == ptime.tm_mon && dates[i].tm_mday == ptime.tm_mday && dates[i].tm_hour == ptime.tm_hour && dates[i].tm_min == ptime.tm_min)
+		return 1;
+	return 0;
+}
+
+int cmp_dates_descend(const void *d1, const void *d2)
+{
+    struct tm date_1 = *(const struct tm *)d1;
+    struct tm date_2 = *(const struct tm *)d2;
+
+    double d = difftime(mktime(&date_1), mktime(&date_2));
+
+    return (d < 0) - (d > 0);
+}
+
 void dateOrder(){ //print the post sorted by date
 
 	FILE *postfile = fopen("post.txt", "r");
 
 	int numofpost = getNumOfPost(postfile);
-	unsigned long long int dates[numofpost];
+	struct tm dates[numofpost];
 	int pseudolen = 0, i = 0;
 
 	struct tm ptime;
 
 	char *elt = malloc(5*sizeof(char));
 	char *pseudo = malloc(20*sizeof(char));
-	char *dref = "Date";
-	char *href = "Heure";
+	char *dref = "Date"; //Word to find to get the date
+	char *href = "Heure"; //Word to find to get hour
 	char c = 'c';
 	
 	rewind(postfile);
@@ -38,32 +54,29 @@ void dateOrder(){ //print the post sorted by date
 		if(strcmp(elt, dref) == 0){
 			fseek(postfile, 3, SEEK_CUR);
 			fscanf(postfile, "%d/%d/%d", (int)&(ptime.tm_mday), (int)&(ptime.tm_mon), (int)&(ptime.tm_year));
+
+			dates[i].tm_year = ptime.tm_year;
+			dates[i].tm_mon = ptime.tm_mon;
+			dates[i].tm_mday = ptime.tm_mday;
 		}
 
 		if(strcmp(elt, href) == 0){
 			fseek(postfile, 3, SEEK_CUR);
 			fscanf(postfile, "%d:%d", (int)&(ptime.tm_hour), (int)&(ptime.tm_min));
-		}
 
-		ptime.tm_year -= 1900;
-		ptime.tm_mon -= 1;
-		ptime.tm_sec = 0;
-		ptime.tm_isdst = -1;
-		unsigned long long rep = mktime(&ptime);
-
-		if(rep != -1){
-			//printf("%d\n", rep);
-			dates[i++] = rep;
+			dates[i].tm_hour = ptime.tm_hour;
+			dates[i++].tm_min = ptime.tm_min;
 		}
 	}
 
-	insertsort(dates, sizeof(dates)/sizeof(dates[0]));
-		
+	size_t num_dates = sizeof(dates)/sizeof(*dates);
+	qsort(dates, num_dates, sizeof(*dates), cmp_dates_descend);
+
 	for(int i = 0; i < numofpost; i++){
 		c = 'c';
 		rewind(postfile);
 		
-		while(!feof(postfile) && c != 24){
+		while(!feof(postfile) && c != 24){ //We read the file until the end c is equal to 24 only if a already founded the wanted post
 
 			fscanf(postfile, "%s", elt);
 			
@@ -74,35 +87,32 @@ void dateOrder(){ //print the post sorted by date
 			}
 
 			if(strcmp(elt, dref) == 0){
-
 				fseek(postfile, 3, SEEK_CUR);
-				fscanf(postfile, "%d/%d/%d", (int)&(ptime.tm_mday), (int)&(ptime.tm_mon), (int)&(ptime.tm_year));
+				fscanf(postfile, "%d/%d/%d", (time_t)&(ptime.tm_mday), (time_t)&(ptime.tm_mon), (time_t)&(ptime.tm_year));
 			}
 
 			if(strcmp(elt, href) == 0){
 				fseek(postfile, 3, SEEK_CUR);
-				fscanf(postfile, "%d:%d", (int)&(ptime.tm_hour), (int)&(ptime.tm_min));
+				fscanf(postfile, "%d:%d", (time_t)&(ptime.tm_hour), (time_t)&(ptime.tm_min));
 			}
 
-			ptime.tm_year -= 1900;
-			ptime.tm_mon -= 1;
-			ptime.tm_sec = 0;
-			ptime.tm_isdst = -1;
-			unsigned long long mkt = mktime(&ptime);
-			
-			printf("mkt : %llu\n", mkt);
-			printf("date[i] %llu\n", dates[i]);
-
-			if(mkt == dates[i]){
-				fseek(postfile, -39, SEEK_CUR);
+			if(check(i, dates, ptime)){ //check look if the member of struct are the same in dates ans ptime
+				fseek(postfile, -40, SEEK_CUR);
 				fseek(postfile, -pseudolen, SEEK_CUR);
 				
-				readPost(postfile);
+				while(c != 24){
+					c = fgetc(postfile);
+					
+					if(c == 24)
+						continue;
+					printf("%c", c);
+				}
 			}
 
-			/*if(ftell(postfile)+13 < feof(postfile)) //If it is not the last post
-				fseek(postfile, 13, SEEK_CUR); //I go to next post*/
+			if(ftell(postfile)+15 < feof(postfile)) //If it is not the last post
+				fseek(postfile, 15, SEEK_CUR); //I go to next post*
 		}
+		printf("\n\n\n\n");
 	}
 	
 	fclose(postfile);
@@ -121,29 +131,6 @@ int getNumOfPost(FILE *postfile){ //returns the number of post
 	}
 
 	return count;
-}
-
-void insert(int member, unsigned long long int arr[], int size){ //insert a number in array
-    int i,j;
-
-    for(i = 0; i < size; i++){
-    	if(member < arr[i]){
-    		for(j  = 0; j < size-i; j++){
-    			arr[size-j] = arr[size-j-1];
-    		}
-            arr[i] = member;
-            break;
-         }
-    }     
-}
-
-void insertsort(unsigned long long int arr[], int size){  //Insertion sort
-    int i = 1, member;
-
-    for(i = 1; i < size; i++){
-    	member = arr[i];
-    	insert(member, arr, i);
-    }
 }
 
 void newpost(user *writer){ //create a new post

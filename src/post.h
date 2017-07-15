@@ -1,5 +1,6 @@
-#include "user.h"
+#include <time.h> //for struct tm
 
+#include "user.h"
 
 typedef struct 
 {
@@ -10,10 +11,10 @@ typedef struct
 	int year;
 }post;
 
-void clean_stdin(); ///clean stdin buffer
+int check(int i, struct tm *dates, struct tm ptime);
 void dateOrder(); //print post sorted by date
 int getNumOfPost(FILE *postfile); //returns the number of post
-void insertsort(unsigned long long int arr[], int size); //Insertion sort 
+void insertsort(time_t arr[], int size); //Insertion sort 
 void newpost(user *writer); //create a new post
 void readPost(FILE *postfile); ///read a post
 void seeAllPost(); //print all posts

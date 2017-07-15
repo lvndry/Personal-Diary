@@ -6,7 +6,7 @@ Je fais quelques corrections mais ca avance bien
 -- END --
 
 
-Pseudo : lad Date : 7/7/2017 Heure : 15:10
+Pseudo : lad Date : 7/7/2017 Heure : 15:17
 Post :
 Voila mon 1er ecrit dans mon journal intime
 C'est un bon debut!
@@ -14,14 +14,14 @@ C'est un bon debut!
 -- END --
 
 
-Pseudo : ladou Date : 7/7/2017 Heure : 15:15
+Pseudo : ladou Date : 7/7/2017 Heure : 15:20
 Post :
 Je fais encore un test
 
 -- END --
 
 
-Pseudo : lad Date : 7/7/2017 Heure : 15:12
+Pseudo : lad Date : 7/7/2017 Heure : 15:25
 Post :
 Je me demande si les ?!& sont accepte 
 On verra bien le resultat
@@ -29,7 +29,7 @@ On verra bien le resultat
 -- END --
 
 
-Pseudo : lad Date : 7/7/2017 Heure : 15:19
+Pseudo : lad Date : 7/7/2017 Heure : 15:32
 Post :
 Lorem Ipsum je connait pas la suite
 ABCDEFGHIJKLMNOPQRSTUVWXYZ
@@ -50,7 +50,7 @@ Post :
 Now we register metadata in the strc
 so that it can be used again
 
--- END --
+ -- END --
 
 
 Pseudo : lad Date : 11/7/2017 Heure : 14:36
