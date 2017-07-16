@@ -49,6 +49,8 @@ void createuser(user *newuser){ //Create a new user
 	newuser->name = (char *)malloc(20*sizeof(char));
 	newuser->forename = (char *)malloc(20*sizeof(char));
 	newuser->pseudo = (char *)malloc(20*sizeof(char));
+	newuser->password = (char *)malloc(20*sizeof(char));
+	
 	char confirm[20];
 
 	printf("\n");

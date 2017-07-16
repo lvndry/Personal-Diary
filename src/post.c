@@ -19,14 +19,13 @@ int check(int i, struct tm *dates, struct tm ptime){
 	return 0;
 }
 
-int cmp_dates_descend(const void *d1, const void *d2)
-{
-    struct tm date_1 = *(const struct tm *)d1;
-    struct tm date_2 = *(const struct tm *)d2;
+int compareDates(const void *d1, const void *d2){
+	struct tm date_1 = *(const struct tm *)d1;
+	struct tm date_2 = *(const struct tm *)d2;
 
-    double d = difftime(mktime(&date_1), mktime(&date_2));
+	double d = difftime(mktime(&date_1), mktime(&date_2));
 
-    return (d < 0) - (d > 0);
+	return (d < 0) - (d > 0);
 }
 
 void dateOrder(){ //print the post sorted by date
@@ -70,7 +69,7 @@ void dateOrder(){ //print the post sorted by date
 	}
 
 	size_t num_dates = sizeof(dates)/sizeof(*dates);
-	qsort(dates, num_dates, sizeof(*dates), cmp_dates_descend);
+	qsort(dates, num_dates, sizeof(*dates), compareDates);
 
 	for(int i = 0; i < numofpost; i++){
 		c = 'c';

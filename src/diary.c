@@ -16,7 +16,7 @@ user* connexion(user *connecteduser){ //Sign in / Sign up, returns a user
 		printf("\n");
 		int login = connectuser(connecteduser);
 
-		if(login){
+		if(login){ //--> if(login == 1)
 	 		printf(" === Welcome %s ! ===\n\n", connecteduser->pseudo);
 		} 
 		else {
@@ -36,15 +36,15 @@ int menu(){ //User options, returns chosen option
 	printf("\t[2] See all my post\n");
 	printf("\t[3] See all posts\n");
 	printf("\t[4] See all posts sorted by day (from the oldest to the most recent)\n");
-	printf("\t[5] See all ... posts\n");
+	printf("\t[5] See all <username> posts\n");
 	printf("\t[6] Log out\n\n");
 	printf("Choice : ");
 
-	while(scanf("%d", &option) != 1 || option < 1 || option > 6){
+	while(scanf("%d", &option) != 1 || option < 1 || option > 6){ //--> while this isn't a number (scanf return 1 if it is a number), or while the number isn't correct..
 		getchar();
 		printf("This is not an option\nPlease choose a valid opiton\nChoice : ");
 	}
-	printf("\n");
+	printf("\n\n\n\n");
 	return option;
 }
 
@@ -71,7 +71,7 @@ void useraction(user *writer, int option){ //Launch action depending on what the
 		break;
 
 		case 5:
-			printf("Type the pseudo of the user you want to see\n");
+			printf("Type the pseudo of the user you want to see the posts\n");
 			scanf("%s", pseudo);
 			seeUserPost(pseudo);
 			getchar();
@@ -82,9 +82,7 @@ void useraction(user *writer, int option){ //Launch action depending on what the
 			writer->connect = 0;
 		break;
 
-		default:
-			printf("Unable choice\n");
-		break;
+		default:break;
 	}
 	printf("\n\n\n\n");
 }      
