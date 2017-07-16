@@ -60,3 +60,12 @@ Now this is not an int that is registerd a the date but the element of the struc
 
 -- END --
 
+Pseudo : oplog Date : 16/7/2017 Heure : 21:1
+Post :
+First oplog post
+
+-- END --
+
+
+
+

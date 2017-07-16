@@ -50,7 +50,7 @@ void createuser(user *newuser){ //Create a new user
 	newuser->forename = (char *)malloc(20*sizeof(char));
 	newuser->pseudo = (char *)malloc(20*sizeof(char));
 	newuser->password = (char *)malloc(20*sizeof(char));
-	
+
 	char confirm[20];
 
 	printf("\n");
@@ -125,6 +125,7 @@ void registeruser(user *newuser){ //register a new user
 	FILE *pseudo = fopen("users.txt", "a+");
 
 	fprintf(pseudo, "%s %s %s %d\n", newuser->pseudo, newuser->password, newuser->forename, newuser->age);
+	fclose(pseudo);
 }   
 
 void signup(user *newuser){ //Sign up a new user and connect him
