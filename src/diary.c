@@ -33,7 +33,7 @@ int menu(){ //User options, returns chosen option
 	int option;
 
 	printf("\t[1] Write in my diary \n");
-	printf("\t[2] See all my post\n");
+	printf("\t[2] See all my posts\n");
 	printf("\t[3] See all posts\n");
 	printf("\t[4] See all posts sorted by day (from the oldest to the most recent)\n");
 	printf("\t[5] See all <username> posts\n");
