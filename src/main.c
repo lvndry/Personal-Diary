@@ -37,7 +37,7 @@ int main(int argc, char const *argv[])
 		
 		printf("Press q to quit and Enter to make an other action\n");
 		c = getchar();
-
+		getchar();
 	}while(toupper(c) != 'Q');
 	
 	return 0;

@@ -1,4 +1,4 @@
-Pseudo password forename age
+pseudo password forename age
 
 admin root admin 0
 lvndry root landry 18

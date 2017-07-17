@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <ctype.h>
 
+//struct defining a user
 typedef struct
 {
 	char *name;

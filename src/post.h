@@ -2,6 +2,7 @@
 
 #include "user.h"
 
+//struct defining a post
 typedef struct 
 {
 	user *creator;

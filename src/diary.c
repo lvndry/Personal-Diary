@@ -73,8 +73,8 @@ void useraction(user *writer, int option){ //Launch action depending on what the
 		case 5:
 			printf("Type the pseudo of the user you want to see the posts\n");
 			scanf("%s", pseudo);
-			seeUserPost(pseudo);
 			getchar();
+			seeUserPost(pseudo);
 		break;
 
 		case 6:

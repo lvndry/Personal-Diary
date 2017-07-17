@@ -69,3 +69,10 @@ First oplog post
 
 
 
+Pseudo : admin Date : 17/7/2017 Heure : 11:40
+Post :
+I guess this is the end of this project
+maybe more features to come who knows..
+
+-- END --
+

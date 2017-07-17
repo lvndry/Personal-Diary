@@ -195,8 +195,7 @@ void seeUserPost(char *wpseudo){ //prit user a particular user posts
 	char *pseudo = malloc(20*sizeof(char));
 	char c = 'c';
 
-	int line = 0, count = 0;
-	int cmp;
+	int count = 0, cmp;
 
 	rewind(postfile);
 
@@ -219,20 +218,18 @@ void seeUserPost(char *wpseudo){ //prit user a particular user posts
 
 			printf("\n\n\n\n");
 
-			if(ftell(postfile)+13 < feof(postfile)) //If it is not the last post
-				fseek(postfile, 13, SEEK_CUR); //I go to next post
+			if(ftell(postfile)+15 < feof(postfile)) //If it is not the last post
+				fseek(postfile, 15, SEEK_CUR); //I go to next post
 		}	
 	}
-
-	if(count == 0)
+	
+	if(count == 0){
 		printf("No post founded\n");
+	}
 	else {
 		printf("Press enter to continue\n");
 		getchar();
 	}
-	
-	free(pseudo);
-	fclose(postfile);
 	getchar();
 }
 
