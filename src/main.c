@@ -39,6 +39,6 @@ int main(int argc, char const *argv[])
 		c = getchar();
 		getchar();
 	}while(c != 'q' && c != 'Q');
-	
+	printf("See you soon !\n");
 	return 0;
 }
