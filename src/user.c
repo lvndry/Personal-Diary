@@ -54,7 +54,7 @@ void createuser(user *newuser){ //Create a new user
 	char confirm[20];
 
 	printf("\n");
-	printf("Sign in : \n");
+	printf("Sign up : \n");
 	printf("Sexe (M for male, F for female, O for other) : ");
 	scanf("%c", &(newuser->sexe));
 	getchar();

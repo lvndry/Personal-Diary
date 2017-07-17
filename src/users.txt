@@ -2,3 +2,4 @@ pseudo password forename age
 
 admin root admin 0
 lvndry root landry 18
+JohnDoe password John 0

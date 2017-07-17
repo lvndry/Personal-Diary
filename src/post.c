@@ -152,6 +152,7 @@ void newpost(user *writer){ //create a new post
 
 	printf("Welcome in your personal editor\nHere you can write anything you want your secret will stay secret\n");
 	printf("You can start writing and press CTRL + X on a new line when finished\n");
+	printf("====================================================================\n\n\n");
 
 	clean_stdin();
 
