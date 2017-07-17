@@ -35,10 +35,10 @@ int main(int argc, char const *argv[])
 		
 		getchar();
 		
-		printf("Press q to quit and Enter to make an other action\n");
+		printf("Press q to quit and Enter to reconnect\n");
 		c = getchar();
 		getchar();
-	}while(toupper(c) != 'Q');
+	}while(c != 'q' && c != 'Q');
 	
 	return 0;
 }

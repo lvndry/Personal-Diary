@@ -162,7 +162,7 @@ void newpost(user *writer){ //create a new post
 
 	writerpost.content = conf;
 	
-	conf[strlen(conf)-2] = '\0';  /*also CTRL + X is not printed in the post*/
+	conf[strlen(conf)-1] = '\0'; /*So that no extra char in added in the post*/
 	
 	printf("\n\n\n");
 	printf("Your post : \n%s\n", conf);

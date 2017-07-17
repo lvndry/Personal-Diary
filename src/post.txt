@@ -63,7 +63,7 @@ Now this is not an int that is registerd a the date but the element of the struc
 Pseudo : oplog Date : 16/7/2017 Heure : 21:1
 Post :
 First oplog post
-
+
 -- END --
 
 
@@ -73,6 +73,18 @@ Pseudo : admin Date : 17/7/2017 Heure : 11:40
 Post :
 I guess this is the end of this project
 maybe more features to come who knows..
-
+
 -- END --
+
+
+
+Pseudo : admin Date : 17/7/2017 Heure : 12:17
+Post :
+I hope this is my last post here
+I loved doing this project
+
+-- END --
+
+
+
 
