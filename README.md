@@ -29,3 +29,5 @@
   - Option 6 is to log out. Then you can quit the diary or reconnect
   ![Alt Text](screenshots/logout.png?raw=true "See posts sorted by date")
   
+  ## compile 
+ ``gcc main.c diary.c post.c user.c`` 
