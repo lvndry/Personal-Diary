@@ -1,5 +1,9 @@
 # Personal-Diary
   Your personal Diary : Fell free to confess anything you want
+  
+## compile 
+ ``gcc main.c diary.c post.c user.c`` 
+ 
 ## Options
   - Sigin/Signup 
   - Add a post in my personal diary
@@ -28,6 +32,4 @@
   
   - Option 6 is to log out. Then you can quit the diary or reconnect
   ![Alt Text](screenshots/logout.png?raw=true "See posts sorted by date")
-  
-  ## compile 
- ``gcc main.c diary.c post.c user.c`` 
+
